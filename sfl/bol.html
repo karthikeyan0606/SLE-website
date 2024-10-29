@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="images/logo1.png" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistics Invoice Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bol.css">
+</head>
+
+<body>
+    <div class="container-fluid vh-100">
+        <div class="invoice-form">
+            <!-- Header with Date and Logo -->
+            <div class="header-row mb-4">
+                <div class="text-start">
+                    <img src="../sfl/images/logo2.png" alt="Company Logo" class="mb-3"
+                        style="height: 100px; width: 100px;">
+                    <h2>Logistics Invoice Form</h2>
+                </div>
+                <div class="text-end">
+                    <p><strong>Date:</strong> <span id="currentDate"></span></p>
+                </div>
+            </div>
+
+            <!-- GSTN and Invoice Details Section -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h5>GSTN Details</h5>
+                    <p>LUT: 872648ibedei</p>
+                    <p>IE Code: 9837492idjhdiwe</p>
+                    <p>AD Code: q3o2837eobxhdgh</p>
+                </div>
+                <div class="col-md-6">
+                    <label for="invoiceNumber" class="form-label">Invoice Number</label>
+                    <input type="text" class="form-control" id="invoiceNumber" readonly>
+                </div>
+            </div>
+
+            <!-- Exporter Details Section (Non-Editable) -->
+            <div class="mb-4">
+                <h5>Exporter Details (SLE - Default)</h5>
+                <p>Name: SLE Logistics</p>
+                <p>Address: 123 SLE Street, Chennai, India</p>
+                <p>Email: slelogistics@example.com</p>
+                <p>Phone: +91 9043916809</p>
+            </div>
+
+            <!-- Customer Details Section -->
+            <div class="mb-4">
+                <h5>Customer Details</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="customerName" class="form-label">Customer Name</label>
+                        <input type="text" class="form-control" id="customerName" placeholder="Enter Name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="customerEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="customerEmail" placeholder="Enter Email" required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label for="customerPhone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control" id="customerPhone" placeholder="Enter Phone Number"
+                            required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="customerAddress" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="customerAddress" placeholder="Enter Address"
+                            required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consignee Details Section -->
+            <div class="mb-4">
+                <h5>Consignee Details</h5>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="consigneeName" class="form-label">Consignee Name</label>
+                        <input type="text" class="form-control" id="consigneeName" placeholder="Enter Consignee Name"
+                            required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="pol" class="form-label">POL (Port of Loading)</label>
+                        <input type="text" class="form-control" id="pol" placeholder="Enter POL" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="pod" class="form-label">POD (Port of Discharge)</label>
+                        <input type="text" class="form-control" id="pod" placeholder="Enter POD" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cargo Items Section -->
+            <div class="mb-4">
+                <h5>Cargo Items</h5>
+                <table id="cargoItemsTable" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>S. No</th>
+                            <th>Description of Goods</th>
+                            <th>Quantity</th>
+                            <th>Unit</th>
+                            <th>HSN Code</th>
+                            <th>Unit Price (INR)</th>
+                            <th>Total (INR)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cargoItemsSection">
+                        <tr>
+                            <td><input type="text" class="form-control itemSerialNumber" value="1" readonly></td>
+                            <td><input type="text" class="form-control itemDescription"
+                                    placeholder="Enter Item Description" required></td>
+                            <td><input type="number" class="form-control itemQuantity" placeholder="Enter Quantity"
+                                    required></td>
+                            <td>
+                                <select class="form-control itemUnit" required>
+                                    <option value="BAG">BAG</option>
+                                    <option value="PCS">PCS</option>
+                                    <option value="PKT">PKT</option>
+                                    <option value="DOZ">DOZ</option>
+                                    <option value="KGS">KGS</option>
+                                    <option value="SET">SET</option>
+                                </select>
+                            </td>
+                            <td><input type="text" class="form-control hsnCode" placeholder="Enter HSN Code" required>
+                            </td>
+                            <td><input type="number" class="form-control unitPrice" placeholder="Price" required></td>
+                            <td><input type="text" class="form-control itemTotal" readonly></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn add-item-btn my-3" onclick="addCargoItem()">Add More Item</button>
+            </div>
+
+            <!-- Total, Save, and Clear Section -->
+            <!-- <div class="mt-4">
+                <h5>Total</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="totalWeight" class="form-label">Total Weight (kg)</label>
+                        <input type="number" class="form-control" id="totalWeight" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="totalCost" class="form-label">Total Cost (INR)</label>
+                        <input type="number" class="form-control" id="totalCost" readonly>
+                    </div>
+
+                    
+                </div>
+                <p>Total Cost (in words): <span id="totalCostWords"></span></p>
+            </div>
+   -->
+
+
+            <div class="mt-5 p-4 bg-light rounded shadow-sm">
+                <h5 class="mb-3 text-primary">Total Summary</h5>
+
+                <div class="row g-3">
+                    <div class="col-md-6 form-group">
+                        <label for="totalWeight" class="form-label fw-bold">Total Weight (kg)</label>
+                        <input type="number" class="form-control" id="totalWeight" readonly>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label for="totalCost" class="form-label fw-bold">Total Cost (INR)</label>
+                        <input type="number" class="form-control" id="totalCost" readonly>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <p class="mb-0 fw-bold">Total Cost (in words):</p>
+                    <p id="totalCostWords" class="font-weight-bold fst-italic border-bottom pb-2"></p>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="mt-4">
+                <button type="button" class="btn btn-success" onclick="calculateTotal()">Calculate Total</button>
+                <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear Form</button>
+                <button type="button" class="btn btn-primary" onclick="downloadPDF()">Download as PDF</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/bol.js"></script>
+</body>
+
+</html>

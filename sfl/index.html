@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>SFL-Star Logic Enterprices </title>
+  <link rel="icon" href="images/logo1.png" type="image/x-icon">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900|Display+Playfair:200,300,400,700">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <header class="site-navbar py-3" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+
+          <div class="col-11 col-xl-2">
+            <!-- <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0">Logistics</a></h1> -->
+            <a href="#">
+              <img src="images/logo1.png"
+                style="height: 80px;width: 80px; border: 2px solid rgba(23, 7, 112, 0.5); border-radius: 50%;"
+                alt="Image">
+            </a>
+
+          </div>
+          <div class="col-12 col-md-10 d-none d-xl-block">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="has-children">
+                  <a href="services.html">Services</a>
+                  <ul class="dropdown">
+                    <li><a href="air_freight.html">Air Freight</a></li>
+                    <li><a href="ocean_freight.html">Ocean Freight</a></li>
+                    <li><a href="ground_shipping.html">Ground Shipping</a></li>
+                    <li><a href="warehousing.html">Warehousing</a></li>
+                    <li><a href="storage.html">Storage</a></li>
+                  </ul>
+                </li>
+                <li class="has-children">
+                  <a href="#">Forms</a>
+                  <ul class="dropdown">
+                    <li><a href="invoice.html">Invoice</a></li>
+                    <li><a href="bol.html">Bill of Lading</a></li>
+                  </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+            </nav>
+
+          </div>
+
+
+          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#"
+              class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+        </div>
+
+      </div>
+  </div>
+
+  </header>
+
+
+
+  <!-- <div class="site-blocks-cover overlay" style="background-image: url(images/hero_bg_1.jpg);" data-aos="fade"
+    data-stellar-background-ratio="0.5"> -->
+
+  <div class="site-blocks-cover overlay" data-aos="fade" data-stellar-background-ratio="0.5">
+    <!-- Video Background -->
+    <video autoplay muted loop playsinline class="bg-video">
+      <source src="images/login_bg.mp4" type="video/mp4">
+    
+    </video>
+
+
+    <div class="container">
+      <div class="row align-items-center justify-content-center text-center">
+
+        <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
+
+
+          <h1 class="text-white font-weight-light mb-5 text-uppercase font-weight-bold">Worldwide Freight Services</h1>
+          <p><a href="contact.html" class="btn btn-primary py-3 px-5 text-white">Get Started!</a></p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row align-items-center no-gutters align-items-stretch overlap-section">
+      <div class="col-md-4">
+        <div class="feature-1 pricing h-100 text-center">
+          <div class="icon">
+            <span class="icon-dollar"></span>
+          </div>
+          <h2 class="my-4 heading">Best Prices</h2>
+          <p>Our efficient network and strategic partnerships allow us to deliver cost-effective solutions tailored to
+            your specific needs.
+          </p>
+        </div>
+      </div>
+
+
+      <div class="col-md-4">
+        <div class="free-quote bg-dark h-100">
+          <h2 class="my-4 heading  text-center">Get Free Quote</h2>
+          <form method="post">
+            <div class="form-group">
+              <label for="fq_name">Name</label>
+              <input type="text" class="form-control btn-block" id="fq_name" name="fq_name" placeholder="Enter Name">
+            </div>
+            <div class="form-group mb-4">
+              <label for="fq_email">Email</label>
+              <input type="text" class="form-control btn-block" id="fq_email" name="fq_email" placeholder="Enter Email">
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary text-white py-2 px-4 btn-block" value="Get Quote"
+                onclick="sendWhatsAppMessage_quote()">
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <script>
+        function sendWhatsAppMessage_quote() {
+          // Get values from the form
+          const fname = document.getElementById('fq_name').value;
+          const email = document.getElementById('fq_email').value;
+
+          // Construct the WhatsApp message
+          const whatsappMessage = `*Name:* ${fq_name}  \n *Email:* ${fq_email} \n `;
+
+
+          // Construct the WhatsApp API link
+          const phoneNumber = "+916385897474"; // Phone number with country code
+          const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+          // Open the link
+          window.open(url, '_blank');
+        }
+      </script>
+
+      <div class=" col-md-4">
+        <div class="feature-3 pricing h-100 text-center">
+          <div class="icon">
+            <span class="icon-phone"></span>
+          </div>
+          <h2 class="my-4 heading">24/7 Support</h2>
+          <p> Our customer support is available 24/7 to assist you with any questions or corncerns. Experience
+            seamless logistics around the clock
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-section">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-7 text-center border-primary">
+          <h2 class="mb-0 text-primary">What We Offer</h2>
+          <p class="color-black-opacity-5">Logistics Simplified, Success Guaranteed</p>
+        </div>
+      </div>
+      <div class="row align-items-stretch">
+
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+          <div class="unit-4 d-flex">
+            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-sea-ship-with-containers"></span></div>
+            <div>
+              <h3>Ocean Freight</h3>
+              <p>
+                Crossing seas, Connecting Businesses. Reliable ocean freight solutions, Worldwide.Delivery,
+                on time, every time
+              </p>
+              <p class="mb-0"><a href="ocean_freight.html">Learn More</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+          <div class="unit-4 d-flex">
+            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-travel"></span></div>
+            <div>
+              <h3>Air Freight</h3>
+              <p>
+                Fast, Reliable Global delivering your goods by air, on time, every time. Taking your business to new
+                height.
+              </p>
+              <p class="mb-0"><a href="air_freight.html">Learn More</a></p>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+          <div class="unit-4 d-flex">
+            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-frontal-truck"></span></div>
+            <div>
+              <h3>Ground Shipping</h3>
+              <p>
+                Your goods our priority. Safe, efficient, and timely door step transportation solutions.
+              </p>
+              <p class="mb-0"><a href="ground_shipping.html">Learn More</a></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="site-section block-13">
+    <!-- <div class="container"></div> -->
+
+
+    <div class="owl-carousel nonloop-block-13">
+      <div>
+        <a href="#" class="unit-1 text-center">
+          <img src="images/img_1.jpg" alt="Image" class="img-fluid">
+          <div class="unit-1-text">
+            <h3 class="unit-1-heading">Storage</h3>
+            <p class="px-5">
+              Efficient and secure storage solutions designed to keep your goods safe and organized, ready for
+              timely
+              dispatch.
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <div>
+        <a href="#" class="unit-1 text-center">
+          <img src="images/img_2.jpg" alt="Image" class="img-fluid">
+          <div class="unit-1-text">
+            <h3 class="unit-1-heading">Air Transports</h3>
+            <p class="px-5">Swift and reliable air cargo services that connect your goods globally with speed,
+              ensuring
+              on-time delivery.</p>
+          </div>
+        </a>
+      </div>
+
+      <div>
+        <a href="#" class="unit-1 text-center">
+          <img src="images/img_3.jpg" alt="Image" class="img-fluid">
+          <div class="unit-1-text">
+            <h3 class="unit-1-heading">Cargo Transports</h3>
+            <p class="px-5">End-to-end cargo transport services tailored to move your shipments seamlessly across
+              distances, reducing transit time and costs.</p>
+          </div>
+        </a>
+      </div>
+
+      <div>
+        <a href="#" class="unit-1 text-center">
+          <img src="images/img_4.jpg" alt="Image" class="img-fluid">
+          <div class="unit-1-text">
+            <h3 class="unit-1-heading">Cargo Ship</h3>
+            <p class="px-5">Global sea freight solutions with extensive cargo ship routes, transporting large
+              volumes
+              with efficiency and care.</p>
+          </div>
+        </a>
+      </div>
+
+      <div>
+        <a href="#" class="unit-1 text-center">
+          <img src="images/img_5.jpg" alt="Image" class="img-fluid">
+          <div class="unit-1-text">
+            <h3 class="unit-1-heading">Ware Housing</h3>
+            <p class="px-5">Comprehensive warehousing services with advanced inventory management for streamlined
+              and
+              cost-effective logistics.</p>
+          </div>
+        </a>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+
+  <div class="site-section bg-light">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-7 text-center border-primary">
+          <h2 class="font-weight-light text-primary">More Services</h2>
+          <p class="color-black-opacity-5">We Offer The Following Services</p>
+        </div>
+      </div>
+
+
+
+      <div class="row align-items-stretch">
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+          <div class="unit-4 d-flex">
+            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-travel"></span></div>
+            <div>
+              <h3>Air Freight</h3>
+              <p>Fast and reliable air freight services connecting global destinations, ensuring on-time, secure
+                deliveries.</p>
+              <p><a href="air_freight.html">Learn More</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+          <div class="unit-4 d-flex">
+            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-sea-ship-with-containers"></span></div>
+            <div>
+              <h3>Ocean Freight</h3>
+              <p>Cost-effective ocean freight solutions for large-volume shipments, utilizing extensive routes and
+                trusted networks.</p>
+              <p><a href="ocean_freight.html">Learn More</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+          <div class="unit-4 d-flex">
+            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-frontal-truck"></span></div>
+            <div>
+              <h3>Ground Shipping</h3>
+              <p>Dependable ground shipping services providing local and regional delivery with efficiency, safety,
+                and
+                punctuality. </p>
+              <p><a href="ground_shipping.html">Learn More</a></p>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+          <div class="unit-4 d-flex">
+            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-barn"></span></div>
+            <div>
+              <h3>Warehousing</h3>
+              <p>Secure, well-equipped warehouses for organized storage, inventory management, and efficient
+                distribution logistics.</p>
+              <p><a href="warehousing.html">Learn More</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+          <div class="unit-4 d-flex">
+            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-platform"></span></div>
+            <div>
+              <h3>Storage</h3>
+              <p>Safe, climate-controlled storage solutions, keeping your goods intact and ready for timely
+                transport.
+              </p>
+              <p><a href="storage.html">Learn More</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
+          <div class="unit-4 d-flex">
+            <div class="unit-4-icon mr-4"><span class="text-primary flaticon-car"></span></div>
+            <div>
+              <h3>Delivery Van</h3>
+              <p>Flexible delivery van services designed for last-mile transport, ensuring direct, swift, and
+                careful
+                deliveries.</p>
+              <p><a href="#">Learn More</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <div class="site-blocks-cover overlay inner-page-cover"
+    style="background-image: url(images/hero_bg_2.jpg); background-attachment: fixed;">
+    <div class="container">
+      <div class="row align-items-center justify-content-center text-center">
+
+        <div class="col-md-7" data-aos="fade-up" data-aos-delay="400">
+          <a href="#" class="play-single-big mb-4 d-inline-block popup-vimeo"><span class="icon-play"></span></a>
+          <h2 class="text-white font-weight-light mb-5 h1">View Our Services By Watching This Short Video</h2>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Testimonials -->
+  <div class="site-section border-bottom" id="testimonial">
+    <div class="container">
+
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-7 text-center border-primary">
+          <h2 class="font-weight-light text-primary">Testimonials</h2>
+        </div>
+      </div>
+
+      <div class="slide-one-item home-slider owl-carousel">
+        <div>
+          <div class="testimonial">
+            <figure class="mb-4">
+              <img src="images/person_3.jpg" alt="Image" class="img-fluid mb-3">
+              <p>Aakash Kumar</p>
+            </figure>
+            <blockquote>
+              <p>&ldquo;We have worked with many logistics companies, but SLE stands out. Their ground
+                shipping and air freight services have streamlined our supply chain. Outstanding support every step
+                of
+                the way!&rdquo;</p>
+            </blockquote>
+          </div>
+        </div>
+        <div>
+          <div class="testimonial">
+            <figure class="mb-4">
+              <img src="images/person_2.jpg" alt="Image" class="img-fluid mb-3">
+              <p>Christine Aguilar</p>
+            </figure>
+            <blockquote>
+              <p>&ldquo;The warehousing services by SLE have simplified our inventory management. Their secure and
+                organized facilities ensure our products are always ready to ship. Couldn’t ask for better!&rdquo;
+              </p>
+            </blockquote>
+          </div>
+        </div>
+
+        <div>
+          <div class="testimonial">
+            <figure class="mb-4">
+              <img src="images/person_4.jpg" alt="Image" class="img-fluid mb-3">
+              <p>Thirukumaran</p>
+            </figure>
+            <blockquote>
+              <p>&ldquo;Our international shipments are now faster than ever. SLE's air freight service keeps us
+                ahead
+                of the competition, with zero delays!&rdquo;</p>
+            </blockquote>
+          </div>
+        </div>
+
+        <div>
+          <div class="testimonial">
+            <figure class="mb-4">
+              <img src="images/person_5.jpg" alt="Image" class="img-fluid mb-3">
+              <p>Sunil thagore</p>
+            </figure>
+            <blockquote>
+              <p>&ldquo;Thanks to SLE, our customers receive their products swiftly and directly to
+                their doors. Their delivery van service has made a world of difference for our business!&rdquo;</p>
+            </blockquote>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="site-section">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-7 text-center border-primary">
+          <h2 class="font-weight-light text-primary">Our Blog</h2>
+          <p class="color-black-opacity-5">See Our Daily News &amp; Updates</p>
+        </div>
+      </div>
+      <div class="row mb-3 align-items-stretch">
+        <div class="col-md-6 col-lg-6 mb-4 mb-lg-4">
+          <div class="h-entry">
+            <img src="images/blog_1.jpg" alt="Image" class="img-fluid">
+            <h2 class="font-size-regular"><a href="#">Warehousing Your Packages</a></h2>
+            <div class="meta mb-4">by Theresa Winston <span class="mx-2">&bullet;</span> Jan 18, 2019 at 2:00 pm <span
+                class="mx-2">&bullet;</span> <a href="#">News</a></div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus eligendi nobis ea maiores sapiente
+              veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6 mb-4 mb-lg-4">
+          <div class="h-entry">
+            <img src="images/blog_2.jpg" alt="Image" class="img-fluid">
+            <h2 class="font-size-regular"><a href="#">Warehousing Your Packages</a></h2>
+            <div class="meta mb-4">by Theresa Winston <span class="mx-2">&bullet;</span> Jan 18, 2019 at 2:00 pm <span
+                class="mx-2">&bullet;</span> <a href="#">News</a></div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus eligendi nobis ea maiores sapiente
+              veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- <div class="site-section border-top">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h2 class="mb-5 text-black">Try Our Services</h2>
+          <p class="mb-0"><a href="booking.html" class="btn btn-primary py-3 px-5 text-white">Get Started</a></p>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-3">
+              <h2 class="footer-heading mb-4">Quick Links</h2>
+              <ul class="list-unstyled">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="#testimonial">Testimonials</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+              </ul>
+            </div>
+            <div class="col-md-3">
+              <h2 class="footer-heading mb-4">Our Services</h2>
+              <ul class="list-unstyled">
+                <li><a href="air_freight.html">Air Freight</a></li>
+                <li><a href="ocean_freight.html">Ocean Freight</a></li>
+                <li><a href="ground_shipping.html">Ground Shipping</a></li>
+                <li><a href="warehousing.html">Warehousing</a></li>
+                <li><a href="storage.html">Storage</a></li>
+              </ul>
+            </div>
+            <div class="col-md-3">
+              <h2 class="footer-heading mb-4">Our Network</h2>
+              <ul class="list-unstyled">
+                <li><a href="#">India</a></li>
+                <li><a href="#">Singapore</a></li>
+                <li><a href="#">malaysiya</a></li>
+                <li><a href="#">USA</a></li>
+              </ul>
+            </div>
+            <div class="col-md-3">
+              <h2 class="footer-heading mb-4">Follow Us</h2>
+              <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+              <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+              <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+              <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <!-- <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
+          <form action="#" method="post">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control border-secondary text-white bg-transparent"
+                placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary text-white" type="button" id="button-addon2">Send</button>
+              </div>
+            </div>
+          </form> -->
+
+          <img src="images/logo2.png" style="height: 200px;width: 200px; " alt="Image" class="img-fluid">
+        </div>
+      </div>
+      <div class="row pt-5 mt-5 text-center">
+        <div class="col-md-12">
+          <div class="border-top pt-5">
+            <p>
+
+              Copyright &copy;
+              <script>document.write(new Date().getFullYear());</script> All rights reserved
+              <!-- <i class="icon-heart" aria-hidden="true"></i> -->
+              <a href="#">starlogicenterprices</a>
+
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+  </div>
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/jquery.countdown.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/bootstrap-datepicker.min.js"></script>
+  <script src="js/aos.js"></script>
+
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>

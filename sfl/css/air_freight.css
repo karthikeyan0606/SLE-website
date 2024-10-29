@@ -1,0 +1,136 @@
+/* Hero Section */
+.bg-dark {
+    --bs-bg-opacity: 1;
+    background-color: #191979 !important;
+}
+
+
+.hero {
+    background: url('https://via.placeholder.com/1920x600?text=Air+Freight+Service') no-repeat center center;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.navbar-brand img {
+    filter: brightness(0) invert(1);
+    width: 100px;
+    height: 80px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+/* Services Section */
+.services-section h2 {
+    color: #002147;
+    font-weight: bold;
+}
+
+.service-card {
+    background-color: #191979;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.service-card .card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.service-card .card-text {
+    font-size: 1rem;
+    color: #f8f9fa;
+}
+
+/* Process Section */
+.process-step h5 {
+    color: navy;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.process-step h5:hover {
+    color: #28a745;
+    transform: scale(1.1);
+}
+
+/* FAQ Section */
+.faq-section h2 {
+    color: #002147;
+    font-weight: bold;
+}
+
+.header-section {
+    padding: 150px 0;
+    color: #fff;
+}
+
+.header-section .overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 100px 0;
+}
+
+
+/* Background Image for Header Section */
+.header-section {
+    background-image: url('../images/hero_bg_1.jpg');
+    /* Update with your background image path */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: relative;
+    padding: 0px 0;
+    overflow: hidden;
+}
+
+.header-section .overlay {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 100px 0;
+}
+
+.header-section h1,
+.header-section p {
+    color: white;
+}
+
+
+
+
+.header-section h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #fff;
+}
+
+/* Navbar Dropdown Hover */
+.navbar-nav .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    transition: 0.5s;
+}
+
+.navbar-nav .dropdown-menu>li>a:hover {
+    background: #f4f5f9;
+    /* color: #25262a; */
+    color: rgb(234, 233, 238);
+    border-radius: 10px;
+    background-color: #191979;
+    transition: 0.5s;
+}
+
+/* Intro Section Spacing
+.intro-section {
+    /* margin-top: -50px; */
+/* Adjust as needed for header spacing */

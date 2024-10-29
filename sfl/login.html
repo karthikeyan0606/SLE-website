@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Login</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Custom Styles */
+    body, html {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    /* Video Background */
+    .background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .login-header h2 {
+      font-size: 1.8rem;
+      color: #007bff;
+    }
+
+    .btn-login {
+      background-color: #007bff;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .btn-login:hover {
+      background-color: #0056b3;
+      color: #fff;
+    }
+
+    .form-control:focus {
+      box-shadow: none;
+      border-color: #007bff;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Video Background -->
+  <video autoplay muted loop class="background-video">
+    <source src="images/login_bg.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="login-container">
+    <div class="login-header">
+      <h2>Employee Login</h2>
+      <p>Please enter your login credentials</p>
+    </div>
+    <form id="loginForm">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+        <small id="emailError" class="error-message"></small>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+        <small id="passwordError" class="error-message"></small>
+      </div>
+      <button type="submit" class="btn btn-login w-100">Login</button>
+      <small id="loginError" class="error-message"></small>
+    </form>
+  </div>
+
+  <!-- JavaScript and Validation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+      let email = document.getElementById('email');
+      let password = document.getElementById('password');
+      let emailError = document.getElementById('emailError');
+      let passwordError = document.getElementById('passwordError');
+      let loginError = document.getElementById('loginError');
+      
+      // Clear previous errors
+      emailError.textContent = '';
+      passwordError.textContent = '';
+      loginError.textContent = '';
+      
+      // Default credentials
+      const defaultEmail = "abcd@gmail.com";
+      const defaultPassword = "12345678";
+      
+      // Validation logic
+      if (email.value === defaultEmail && password.value === defaultPassword) {
+        // Redirect to dashboard if credentials match
+        window.location.href = "dashboard.html"; // Change to your dashboard page
+      } else {
+        loginError.textContent = 'Incorrect email or password';
+      }
+    });
+  </script>
+</body>
+</html>

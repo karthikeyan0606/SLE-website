@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="images/logo1.png" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLE-Invoice Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/invc.css">
+    <style>
+        /* Additional styling can go here */
+    </style>
+</head>
+
+<body>
+    <top>
+        <h2 class="top">STAR LOGIC ENTERPRISES</h2>
+        <h3>TAX INVOICE</h3>
+    </top>
+
+    <section1>
+        <p>NO 82/165 Thambu Chetty Street,</p>
+        <p>Opposite CHANKU BRAND, CHENNAI-600 001</p>
+        <p>Mobile NO - 90439 16809</p>
+        <p>GSTIN: 33AEVPR5480A1ZA | FSSAI: 12417002004457</p>
+    </section1>
+
+    <div class="section-row d-flex justify-content-between">
+        <section class="section-content">
+            <h5>Customer Details</h5>
+            <table class="table table-bordered">
+                <tr>
+                    <td><label for="cname">Name</label></td>
+                    <td>
+                        <input type="text" id="cname" class="form-control" placeholder="Enter customer name" required>
+                        <span id="nameError" class="text-danger" style="display: none;">* Name is required</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="address">Address</label></td>
+                    <td>
+                        <textarea id="address" class="form-control" rows="1" placeholder="Enter customer address"
+                            required></textarea>
+                        <span id="addressError" class="text-danger" style="display: none;">* Address is required</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="mobile">Mobile</label></td>
+                    <td>
+                        <input type="text" id="mobile" class="form-control" placeholder="Enter mobile number" required>
+                        <span id="mobileError" class="text-danger" style="display: none;">* Mobile number is
+                            required</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email</label></td>
+                    <td>
+                        <input type="email" id="email" class="form-control" placeholder="Enter email" required>
+                        <span id="emailError" class="text-danger" style="display: none;">* Valid email is
+                            required</span>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="section-content">
+            <h5>Invoice Details</h5>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td><strong>Bill No.</strong></td>
+                        <td><span id="billNo"></span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dated</strong></td>
+                        <td><span id="currentDate"></span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transport</strong></td>
+                        <td><input type="text" id="transport" class="form-control" value="Chennai"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>GSTIN</strong></td>
+                        <td>33BITPB8596E1ZV</td>
+                    </tr>
+                    <tr>
+                        <td><strong>State</strong></td>
+                        <td>Tamilnadu</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <div class="mt-5 mb-4">
+        <h5>Port Information</h5>
+        <div class="form-row mb-4">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td><strong>POL</strong></td>
+                        <td>
+                            <input type="text" class="form-control" placeholder="POL (Port of Loading)" id="pol"
+                                required>
+                            <span id="polError" class="text-danger" style="display: none;">* POL is required</span>
+                        </td>
+                        <td><strong>POD</strong></td>
+                        <td>
+                            <input type="text" class="form-control" placeholder="POD (Port of Discharge)" id="pod"
+                                required>
+                            <span id="podError" class="text-danger" style="display: none;">* POD is required</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <section class="cargo-items-section">
+            <h5>Cargo Items</h5>
+            <table id="cargoItemsTable" class="table table-bordered table-hover table-editable">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="col-serial">S. No</th>
+                        <th class="col-description">Description of Goods</th>
+                        <th class="col-quantity">Quantity</th>
+                        <th class="col-unit">Unit</th>
+                        <th class="col-hsn">HSN Code</th>
+                        <th class="col-unit-price">Unit Price (INR)</th>
+                        <th class="col-total">Total (INR)</th>
+                    </tr>
+                </thead>
+                <tbody id="cargoItemsSection">
+                    <tr>
+                        <td><input type="text" class="form-control itemSerialNumber" value="1" readonly></td>
+                        <td>
+                            <input type="text" class="form-control itemDescription" placeholder="Enter Item Description"
+                                required>
+                            <span class="itemDescriptionError text-danger" style="display: none;">* Description is
+                                required</span>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control itemQuantity" placeholder="Enter Quantity"
+                                oninput="calculateTotal(this)" required>
+                            <span class="itemQuantityError text-danger" style="display: none;">* Quantity is
+                                required</span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control itemUnit" placeholder="Enter Unit" required>
+                            <span class="itemUnitError text-danger" style="display: none;">* Unit is required</span>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control hsnCode" placeholder="Enter HSN Code" required>
+                            <span class="hsnCodeError text-danger" style="display: none;">* HSN Code is required</span>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control unitPrice" placeholder="Price"
+                                oninput="calculateTotal(this)" required>
+                            <span class="unitPriceError text-danger" style="display: none;">* Unit Price is
+                                required</span>
+                        </td>
+                        <td><input type="text" class="form-control itemTotal" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="btn add-item-btn my-3" onclick="addCargoItem()">Add More Item</button>
+        </section>
+
+        <!-- GRAND TOTAL -->
+        <section class="grand-total-section">
+            <h4>Payment Summary</h4>
+            <table class="table table-bordered">
+                <tr>
+                    <td><strong>Grand Total (INR)</strong></td>
+                    <td><span id="grandTotal">0.00</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Grand Total (in words)</strong></td>
+                    <td><span id="grandTotalWords"></span></td>
+                </tr>
+            </table>
+        </section>
+    </div>
+
+    <!-- BANK DETAILS -->
+    <section class="bank-details">
+        <h4>Bank Details</h4>
+        <table class="table table-bordered">
+            <tr>
+                <td><strong>Bank Name</strong></td>
+                <td><input type="text" id="bankName" class="form-control" placeholder="Bank Name" required></td>
+            </tr>
+            <tr>
+                <td><strong>Account Holder</strong></td>
+                <td><input type="text" id="accountHolder" class="form-control" placeholder="Account Holder Name"
+                        required></td>
+            </tr>
+            <tr>
+                <td><strong>Account Number</strong></td>
+                <td><input type="text" id="accountNumber" class="form-control" placeholder="Account Number" required>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>IFSC Code</strong></td>
+                <td><input type="text" id="ifscCode" class="form-control" placeholder="IFSC Code" required></td>
+            </tr>
+            <tr>
+                <td><strong>SWIFT Code</strong></td>
+                <td><input type="text" id="swiftCode" class="form-control" placeholder="SWIFT Code" required></td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- SUBMIT BUTTON -->
+
+    <button type="button" class="btn btn-success my-3" onclick="saveData()">Save</button>
+    <button type="button" class="btn btn-success my-3" onclick="validateForm()">Validate</button>
+    <button type="button" class="btn btn-success my-3" onclick="downloadPDF()">Download Invoice</button>
+    <button type="button" class="btn btn-secondary my-3" onclick="goBack()"> Go Back</button>
+
+
+    <script>
+
+
+        // Validate form inputs
+        function validateForm() {
+            let isValid = true;
+
+            // Customer Details
+            const cname = document.getElementById('cname');
+            const address = document.getElementById('address');
+            const mobile = document.getElementById('mobile');
+            const email = document.getElementById('email');
+
+            if (cname.value.trim() === "") {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('nameError').style.display = 'none';
+            }
+
+            if (address.value.trim() === "") {
+                document.getElementById('addressError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('addressError').style.display = 'none';
+            }
+
+            if (mobile.value.trim() === "") {
+                document.getElementById('mobileError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('mobileError').style.display = 'none';
+            }
+
+            if (email.value.trim() === "" || !email.value.includes('@')) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('emailError').style.display = 'none';
+            }
+
+            // Port Information
+            const pol = document.getElementById('pol');
+            const pod = document.getElementById('pod');
+
+            if (pol.value.trim() === "") {
+                document.getElementById('polError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('polError').style.display = 'none';
+            }
+
+            if (pod.value.trim() === "") {
+                document.getElementById('podError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('podError').style.display = 'none';
+            }
+
+            // Validate cargo items
+            const cargoRows = document.querySelectorAll('#cargoItemsSection tr');
+            cargoRows.forEach(row => {
+                const itemDescription = row.querySelector('.itemDescription');
+                const itemQuantity = row.querySelector('.itemQuantity');
+                const itemUnit = row.querySelector('.itemUnit');
+                const hsnCode = row.querySelector('.hsnCode');
+                const unitPrice = row.querySelector('.unitPrice');
+
+                if (itemDescription.value.trim() === "") {
+                    row.querySelector('.itemDescriptionError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    row.querySelector('.itemDescriptionError').style.display = 'none';
+                }
+
+                if (itemQuantity.value.trim() === "") {
+                    row.querySelector('.itemQuantityError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    row.querySelector('.itemQuantityError').style.display = 'none';
+                }
+
+                if (itemUnit.value.trim() === "") {
+                    row.querySelector('.itemUnitError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    row.querySelector('.itemUnitError').style.display = 'none';
+                }
+
+                if (hsnCode.value.trim() === "") {
+                    row.querySelector('.hsnCodeError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    row.querySelector('.hsnCodeError').style.display = 'none';
+                }
+
+                if (unitPrice.value.trim() === "") {
+                    row.querySelector('.unitPriceError').style.display = 'block';
+                    isValid = false;
+                } else {
+                    row.querySelector('.unitPriceError').style.display = 'none';
+                }
+            });
+
+            if (isValid) {
+                alert("Invoice is ready to Download!");
+            }
+        }
+
+        // Add event listeners to hide error messages on input
+        const inputs = document.querySelectorAll('input[type="text"], input[type="number"], input[type="email"]');
+        inputs.forEach(input => {
+            input.addEventListener('input', function () {
+                const errorSpan = document.getElementById(input.id + 'Error');
+                if (errorSpan) {
+                    errorSpan.style.display = 'none'; // Hide error message on input
+                }
+            });
+        });
+
+    </script>
+    <script src="js/invc.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

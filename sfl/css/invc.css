@@ -1,0 +1,186 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h2,
+h3 {
+    text-align: center;
+    margin: 0;
+}
+
+section1 {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+}
+
+section2,
+section3 {
+    width: 48%;
+}
+
+
+
+.table-editable input,
+.table-editable select {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+}
+
+.table-editable input:focus,
+.table-editable select:focus {
+    outline: none;
+    background-color: #f0f8ff;
+}
+
+.add-item-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.total-row {
+    font-weight: bold;
+}
+
+
+.section-row {
+    display: flex;
+    gap: 20px;
+    /* Space between sections */
+}
+
+.table td,
+.table th {
+    padding: 8px;
+    /* Standard padding for table cells */
+}
+
+
+
+.section-content {
+    width: 100%;
+    max-width: 600px;
+    /* Optional: Set a max width if needed */
+    margin: 0 auto;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.section-content table {
+    width: 100%;
+}
+
+.section-content table td {
+    width: 100%;
+    padding: 8px;
+    vertical-align: top;
+}
+
+.section-content table td:first-child {
+    width: 30%;
+    /* Adjust label width */
+    padding-right: 10px;
+}
+
+.form-control {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+
+/* Print-specific CSS */
+@media print {
+    body {
+        font-family: Arial, sans-serif;
+        margin: 10px;
+        font-size: 12px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    /* Responsive table adjustments */
+    .table td,
+    .table th {
+        padding: 5px;
+        font-size: 10px;
+    }
+
+    .grand-total {
+        font-weight: bold;
+        font-size: 14px;
+    }
+}
+
+.grand-total-words {
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.top {
+    font-weight: bold;
+
+}
+
+.cargo-items-section {
+    width: 100%;
+}
+
+#cargoItemsTable {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#cargoItemsTable th,
+#cargoItemsTable td {
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Set specific widths for each column */
+.col-serial {
+    width: 5%;
+    /* S. No column small */
+}
+
+.col-description {
+    width: 30%;
+    /* Description column wider */
+}
+
+.col-quantity {
+    width: 10%;
+    /* Quantity column */
+}
+
+.col-unit {
+    width: 10%;
+    /* Unit column */
+}
+
+.col-hsn {
+    width: 15%;
+    /* HSN Code column */
+}
+
+.col-unit-price {
+    width: 15%;
+    /* Unit Price column */
+}
+
+.col-total {
+    width: 15%;
+    /* Total column */
+}
+
+section1 p {
+    font-size: 12px;
+    margin: 0;
+}
