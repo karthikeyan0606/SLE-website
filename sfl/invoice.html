@@ -70,8 +70,13 @@
                 <tbody>
                     <tr>
                         <td><strong>Bill No.</strong></td>
-                        <td><span id="billNo"></span></td>
+                        <td>
+                            <input type="text" class="form-control" id="billNo" placeholder="Enter Bill Number" />
+                            <span id="billNoError" class="text-danger" style="display: none;">* Bill Number is
+                                required</span>
+                        </td>
                     </tr>
+
                     <tr>
                         <td><strong>Dated</strong></td>
                         <td><span id="currentDate"></span></td>
@@ -188,164 +193,153 @@
         <table class="table table-bordered">
             <tr>
                 <td><strong>Bank Name</strong></td>
-                <td><input type="text" id="bankName" class="form-control" placeholder="Bank Name" required></td>
+                <td><input type="text" id="bankName" class="form-control" placeholder="Bank Name" value="ICICI BANK"
+                        required></td>
             </tr>
             <tr>
                 <td><strong>Account Holder</strong></td>
                 <td><input type="text" id="accountHolder" class="form-control" placeholder="Account Holder Name"
-                        required></td>
+                        value="Starlogic" required></td>
             </tr>
             <tr>
                 <td><strong>Account Number</strong></td>
-                <td><input type="text" id="accountNumber" class="form-control" placeholder="Account Number" required>
+                <td><input type="text" id="accountNumber" class="form-control" placeholder="Account Number"
+                        value="746584735867465" required>
                 </td>
             </tr>
             <tr>
                 <td><strong>IFSC Code</strong></td>
-                <td><input type="text" id="ifscCode" class="form-control" placeholder="IFSC Code" required></td>
+                <td><input type="text" id="ifscCode" class="form-control" placeholder="IFSC Code" value="IFSC76387"
+                        required></td>
             </tr>
             <tr>
                 <td><strong>SWIFT Code</strong></td>
-                <td><input type="text" id="swiftCode" class="form-control" placeholder="SWIFT Code" required></td>
+                <td><input type="text" id="swiftCode" class="form-control" placeholder="SWIFT Code" value="43768732"
+                        required></td>
             </tr>
         </table>
     </section>
 
     <!-- SUBMIT BUTTON -->
 
-    <button type="button" class="btn btn-success my-3" onclick="saveData()">Save</button>
-    <button type="button" class="btn btn-success my-3" onclick="validateForm()">Validate</button>
+    <!-- <button type="button" class="btn btn-success my-3" onclick="saveData()">Save</button> -->
     <button type="button" class="btn btn-success my-3" onclick="downloadPDF()">Download Invoice</button>
-    <button type="button" class="btn btn-secondary my-3" onclick="goBack()"> Go Back</button>
+    <button type="button" class="btn btn-secondary my-3" onclick="goBack()">Go Back</button>
+    <button type="button" class="btn btn-success my-3" onclick="downloadExcel()">Download as Excel</button>
+
 
 
     <script>
 
 
-        // Validate form inputs
-        function validateForm() {
-            let isValid = true;
-
-            // Customer Details
-            const cname = document.getElementById('cname');
-            const address = document.getElementById('address');
-            const mobile = document.getElementById('mobile');
-            const email = document.getElementById('email');
-
-            if (cname.value.trim() === "") {
-                document.getElementById('nameError').style.display = 'block';
-                isValid = false;
-            } else {
-                document.getElementById('nameError').style.display = 'none';
-            }
-
-            if (address.value.trim() === "") {
-                document.getElementById('addressError').style.display = 'block';
-                isValid = false;
-            } else {
-                document.getElementById('addressError').style.display = 'none';
-            }
-
-            if (mobile.value.trim() === "") {
-                document.getElementById('mobileError').style.display = 'block';
-                isValid = false;
-            } else {
-                document.getElementById('mobileError').style.display = 'none';
-            }
-
-            if (email.value.trim() === "" || !email.value.includes('@')) {
-                document.getElementById('emailError').style.display = 'block';
-                isValid = false;
-            } else {
-                document.getElementById('emailError').style.display = 'none';
-            }
-
-            // Port Information
-            const pol = document.getElementById('pol');
-            const pod = document.getElementById('pod');
-
-            if (pol.value.trim() === "") {
-                document.getElementById('polError').style.display = 'block';
-                isValid = false;
-            } else {
-                document.getElementById('polError').style.display = 'none';
-            }
-
-            if (pod.value.trim() === "") {
-                document.getElementById('podError').style.display = 'block';
-                isValid = false;
-            } else {
-                document.getElementById('podError').style.display = 'none';
-            }
-
-            // Validate cargo items
-            const cargoRows = document.querySelectorAll('#cargoItemsSection tr');
-            cargoRows.forEach(row => {
-                const itemDescription = row.querySelector('.itemDescription');
-                const itemQuantity = row.querySelector('.itemQuantity');
-                const itemUnit = row.querySelector('.itemUnit');
-                const hsnCode = row.querySelector('.hsnCode');
-                const unitPrice = row.querySelector('.unitPrice');
-
-                if (itemDescription.value.trim() === "") {
-                    row.querySelector('.itemDescriptionError').style.display = 'block';
-                    isValid = false;
-                } else {
-                    row.querySelector('.itemDescriptionError').style.display = 'none';
-                }
-
-                if (itemQuantity.value.trim() === "") {
-                    row.querySelector('.itemQuantityError').style.display = 'block';
-                    isValid = false;
-                } else {
-                    row.querySelector('.itemQuantityError').style.display = 'none';
-                }
-
-                if (itemUnit.value.trim() === "") {
-                    row.querySelector('.itemUnitError').style.display = 'block';
-                    isValid = false;
-                } else {
-                    row.querySelector('.itemUnitError').style.display = 'none';
-                }
-
-                if (hsnCode.value.trim() === "") {
-                    row.querySelector('.hsnCodeError').style.display = 'block';
-                    isValid = false;
-                } else {
-                    row.querySelector('.hsnCodeError').style.display = 'none';
-                }
-
-                if (unitPrice.value.trim() === "") {
-                    row.querySelector('.unitPriceError').style.display = 'block';
-                    isValid = false;
-                } else {
-                    row.querySelector('.unitPriceError').style.display = 'none';
-                }
-            });
-
-            if (isValid) {
-                alert("Invoice is ready to Download!");
-            }
-        }
-
-        // Add event listeners to hide error messages on input
-        const inputs = document.querySelectorAll('input[type="text"], input[type="number"], input[type="email"]');
-        inputs.forEach(input => {
-            input.addEventListener('input', function () {
-                const errorSpan = document.getElementById(input.id + 'Error');
-                if (errorSpan) {
-                    errorSpan.style.display = 'none'; // Hide error message on input
-                }
-            });
-        });
-
     </script>
     <script src="js/invc.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- SheetJS library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+    <script>
+        function downloadExcel() {
+            // Gather form data for Customer Details
+            const customerName = document.getElementById("cname").value;
+            const address = document.getElementById("address").value;
+            const mobile = document.getElementById("mobile").value;
+            const email = document.getElementById("email").value;
+            const transport = document.getElementById("transport").value;
+            const pol = document.getElementById("pol").value;
+            const pod = document.getElementById("pod").value;
+
+            // Gather Cargo Items data
+            const cargoItems = [];
+            document.querySelectorAll("#cargoItemsSection tr").forEach((row, index) => {
+                const itemDescription = row.querySelector(".itemDescription").value;
+                const itemQuantity = row.querySelector(".itemQuantity").value;
+                const itemUnit = row.querySelector(".itemUnit").value;
+                const hsnCode = row.querySelector(".hsnCode").value;
+                const unitPrice = row.querySelector(".unitPrice").value;
+                const itemTotal = row.querySelector(".itemTotal").value;
+                cargoItems.push([
+                    index + 1, itemDescription, itemQuantity, itemUnit, hsnCode, unitPrice, itemTotal
+                ]);
+            });
+
+            // Prepare Bank Details data
+            const bankDetails = [
+                ["Bank Name", document.getElementById("bankName").value],
+                ["Account Holder", document.getElementById("accountHolder").value],
+                ["Account Number", document.getElementById("accountNumber").value],
+                ["IFSC Code", document.getElementById("ifscCode").value],
+                ["SWIFT Code", document.getElementById("swiftCode").value]
+            ];
+
+            // Create a new workbook and add a single worksheet
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet([
+                ["Customer Details"],
+                ["Name", customerName],
+                ["Address", address],
+                ["Mobile", mobile],
+                ["Email", email],
+                ["Transport", transport],
+                ["POL (Port of Loading)", pol],
+                ["POD (Port of Discharge)", pod],
+                [],
+                ["Cargo Items"],
+                ["S. No", "Description of Goods", "Quantity", "Unit", "HSN Code", "Unit Price (INR)", "Total (INR)"],
+                ...cargoItems,
+                [],
+                ["Bank Details"],
+                ...bankDetails
+            ]);
+
+            // Set column widths for readability
+            ws['!cols'] = [
+                { wch: 20 },
+                { wch: 30 },
+                { wch: 15 },
+                { wch: 10 },
+                { wch: 15 },
+                { wch: 20 },
+                { wch: 20 }
+            ];
+
+            // Apply bold styling to headers
+            const boldCells = [
+                { cell: "A1", text: "Customer Details" },
+                { cell: "A11", text: "S. No" },
+                { cell: "B11", text: "Description of Goods" },
+                { cell: "C11", text: "Quantity" },
+                { cell: "D11", text: "Unit" },
+                { cell: "E11", text: "HSN Code" },
+                { cell: "F11", text: "Unit Price (INR)" },
+                { cell: "G11", text: "Total (INR)" },
+                { cell: "A13", text: "Bank Details" }
+            ];
+
+            // Add bold font style to each header cell
+            boldCells.forEach(({ cell, text }) => {
+                ws[cell] = { v: text, s: { font: { bold: true } } };
+            });
+
+            // Add the worksheet to the workbook
+            XLSX.utils.book_append_sheet(wb, ws, "Invoice Data");
+
+            // Get the bill number as the file name
+            const billNo = document.getElementById("billNo").value || "InvoiceData";
+            const fileName = `${billNo}.xlsx`;
+
+            // Download the Excel file
+            XLSX.writeFile(wb, fileName);
+        }
+    </script>
+
+
+
 </body>
 
 </html>

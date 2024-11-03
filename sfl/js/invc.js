@@ -10,8 +10,8 @@ const randomBillNumber = `${year}-${Math.floor(10000 + Math.random() * 90000)}`;
 document.getElementById("billNo").textContent = randomBillNumber;
 
 // Function to add a new cargo item row
- // Function to add cargo items
- function addCargoItem() {
+// Function to add cargo items
+function addCargoItem() {
     const newRow = document.createElement('tr');
     const itemCount = document.querySelectorAll('.itemSerialNumber').length + 1;
     newRow.innerHTML = `
@@ -136,63 +136,82 @@ window.onload = updateGrandTotalWords;
 
 
 
-function saveData() {
-    const items = [];
-    document.querySelectorAll('#cargoItemsTable tbody tr').forEach(row => {
-        const item = {
-            description: row.querySelector('.itemDescription').value,
-            quantity: row.querySelector('.itemQuantity').value,
-            unit: row.querySelector('.itemUnit').value,
-            hsnCode: row.querySelector('.hsnCode').value,
-            unitPrice: row.querySelector('.unitPrice').value,
-            total: row.querySelector('.itemTotal').value
-        };
-        items.push(item);
-    });
-    const data = {
-        billNo: document.getElementById('billNo').textContent,
-        date: document.getElementById('currentDate').textContent,
-        transport: document.getElementById('transport').value,
-        pol: document.getElementById('pol').value,
-        pod: document.getElementById('pod').value,
-        grandTotal: document.getElementById('grandTotal').textContent,
-        grandTotalWords: document.getElementById('grandTotalWords').textContent,
-        items
-    };
-    console.log("Saved Data: ", JSON.stringify(data, null, 2));
-}
-// DOWNLOAD PDF
-// image format pdf. it not selectable text
-function downloadPDF() {
-    // Save current input values
-    const inputs = document.querySelectorAll('input, textarea');
-    const values = Array.from(inputs).map(input => input.value);
+// function saveData() {
+//     const items = [];
+//     document.querySelectorAll('#cargoItemsTable tbody tr').forEach(row => {
+//         const item = {
+//             description: row.querySelector('.itemDescription').value,
+//             quantity: row.querySelector('.itemQuantity').value,
+//             unit: row.querySelector('.itemUnit').value,
+//             hsnCode: row.querySelector('.hsnCode').value,
+//             unitPrice: row.querySelector('.unitPrice').value,
+//             total: row.querySelector('.itemTotal').value
+//         };
+//         items.push(item);
+//     });
+//     const data = {
+//         billNo: document.getElementById('billNo').textContent,
+//         date: document.getElementById('currentDate').textContent,
+//         transport: document.getElementById('transport').value,
+//         pol: document.getElementById('pol').value,
+//         pod: document.getElementById('pod').value,
+//         grandTotal: document.getElementById('grandTotal').textContent,
+//         grandTotalWords: document.getElementById('grandTotalWords').textContent,
+//         items
+//     };
+//     console.log("Saved Data: ", JSON.stringify(data, null, 2));
+// }
 
-    // Replace input fields with their values for PDF view
-    inputs.forEach((input, index) => {
-        const span = document.createElement("span");
-        span.textContent = values[index];
-        span.style.display = "block";
-        span.className = "pdf-text";
-        input.parentNode.replaceChild(span, input);
+
+
+// DOWNLOAD PDF
+function downloadPDF() {
+    // Validate form before downloading
+    if (!validateForm()) {
+        console.log("Validation failed.");
+        return; // If validation fails, exit the function
+    }
+
+    // Get the bill number for the filename
+    const billNumber = document.getElementById('billNo').value.trim() || "invoice";
+    console.log("Bill Number:", billNumber);
+
+    // Create a new HTML element to hold the PDF content
+    const pdfContent = document.createElement("div");
+
+    // Add a title to the PDF
+    const title = document.createElement("h1");
+    title.textContent = "Invoice";
+    pdfContent.appendChild(title);
+
+    // Create a table to display the data
+    const table = document.createElement("table");
+    const headerRow = document.createElement("tr");
+    headerRow.innerHTML = `
+        <th>Field</th>
+        <th>Value</th>
+    `;
+    table.appendChild(headerRow);
+
+    // Gather the data from inputs and create table rows
+    const inputs = document.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        const row = document.createElement("tr");
+        const cell1 = document.createElement("td");
+        const cell2 = document.createElement("td");
+        cell1.textContent = input.placeholder || input.id; // Display placeholder or id as field name
+        cell2.textContent = input.value; // Display the value entered
+        row.appendChild(cell1);
+        row.appendChild(cell2);
+        table.appendChild(row);
     });
+
+    pdfContent.appendChild(table);
 
     // Hide unnecessary elements like buttons
     document.querySelectorAll("button").forEach(button => button.style.display = "none");
 
-    // Hide table borders and show text as selectable
-    document.querySelectorAll("table").forEach(table => {
-        table.style.border = "none";
-        table.querySelectorAll("tr, td, th").forEach(cell => {
-            cell.style.border = "none";
-            cell.style.padding = "2px 0"; // Adjust for better layout
-        });
-    });
-
-    // Get bill number for the filename
-    const billNumber = document.getElementById('billNo').textContent || "invoice";
-
-    // Set up options for PDF generation with bill number as filename
+    // Set up options for PDF generation
     const options = {
         margin: 0.5,
         filename: `${billNumber}.pdf`,  // Use bill number as filename
@@ -201,28 +220,15 @@ function downloadPDF() {
         jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
     };
 
-    // Generate PDF
-    html2pdf().from(document.body).set(options).save().then(() => {
-        // Restore original elements after PDF generation
-        document.querySelectorAll(".pdf-text").forEach((span, index) => {
-            const input = document.createElement(inputs[index].tagName.toLowerCase());
-            input.value = span.textContent;
-            input.className = inputs[index].className;
-            input.type = inputs[index].type;
-            span.parentNode.replaceChild(input, span);
-        });
-
-        // Show hidden elements
+    // Generate PDF from the content created
+    html2pdf().from(pdfContent).set(options).save().then(() => {
+        console.log("PDF downloaded.");
+        // Show hidden elements again after PDF generation
         document.querySelectorAll("button").forEach(button => button.style.display = "inline-block");
-
-        // Restore table borders
-        document.querySelectorAll("table").forEach(table => {
-            table.style.border = ""; // Reset table borders
-            table.querySelectorAll("tr, td, th").forEach(cell => {
-                cell.style.border = ""; // Reset cell borders
-                cell.style.padding = ""; // Reset padding
-            });
-        });
+    }).catch(err => {
+        console.error("Error during PDF generation:", err);
+        // Show hidden elements again in case of error
+        document.querySelectorAll("button").forEach(button => button.style.display = "inline-block");
     });
 }
 
@@ -242,6 +248,133 @@ window.onload = updateGrandTotalWords;
 
 
 
+
+function validateForm() {
+    let isValid = true;
+
+    // Customer Details
+    const cname = document.getElementById('cname');
+    const address = document.getElementById('address');
+    const mobile = document.getElementById('mobile');
+    const email = document.getElementById('email');
+
+    // Bill No. Validation
+    const billNo = document.getElementById('billNo');
+
+    if (billNo.value.trim() === "") {
+        document.getElementById('billNoError').style.display = 'block';
+        isValid = false;
+    } else {
+        document.getElementById('billNoError').style.display = 'none';
+    }
+
+    if (cname.value.trim() === "") {
+        document.getElementById('nameError').style.display = 'block';
+        isValid = false;
+    } else {
+        document.getElementById('nameError').style.display = 'none';
+    }
+
+    if (address.value.trim() === "") {
+        document.getElementById('addressError').style.display = 'block';
+        isValid = false;
+    } else {
+        document.getElementById('addressError').style.display = 'none';
+    }
+
+    if (mobile.value.trim() === "") {
+        document.getElementById('mobileError').style.display = 'block';
+        isValid = false;
+    } else {
+        document.getElementById('mobileError').style.display = 'none';
+    }
+
+    if (email.value.trim() === "" || !email.value.includes('@')) {
+        document.getElementById('emailError').style.display = 'block';
+        isValid = false;
+    } else {
+        document.getElementById('emailError').style.display = 'none';
+    }
+
+    // Port Information
+    const pol = document.getElementById('pol');
+    const pod = document.getElementById('pod');
+
+    if (pol.value.trim() === "") {
+        document.getElementById('polError').style.display = 'block';
+        isValid = false;
+    } else {
+        document.getElementById('polError').style.display = 'none';
+    }
+
+    if (pod.value.trim() === "") {
+        document.getElementById('podError').style.display = 'block';
+        isValid = false;
+    } else {
+        document.getElementById('podError').style.display = 'none';
+    }
+
+    // Validate cargo items
+    const cargoRows = document.querySelectorAll('#cargoItemsSection tr');
+    cargoRows.forEach(row => {
+        const itemDescription = row.querySelector('.itemDescription');
+        const itemQuantity = row.querySelector('.itemQuantity');
+        const itemUnit = row.querySelector('.itemUnit');
+        const hsnCode = row.querySelector('.hsnCode');
+        const unitPrice = row.querySelector('.unitPrice');
+
+        if (itemDescription.value.trim() === "") {
+            row.querySelector('.itemDescriptionError').style.display = 'block';
+            isValid = false;
+        } else {
+            row.querySelector('.itemDescriptionError').style.display = 'none';
+        }
+
+        if (itemQuantity.value.trim() === "") {
+            row.querySelector('.itemQuantityError').style.display = 'block';
+            isValid = false;
+        } else {
+            row.querySelector('.itemQuantityError').style.display = 'none';
+        }
+
+        if (itemUnit.value.trim() === "") {
+            row.querySelector('.itemUnitError').style.display = 'block';
+            isValid = false;
+        } else {
+            row.querySelector('.itemUnitError').style.display = 'none';
+        }
+
+        if (hsnCode.value.trim() === "") {
+            row.querySelector('.hsnCodeError').style.display = 'block';
+            isValid = false;
+        } else {
+            row.querySelector('.hsnCodeError').style.display = 'none';
+        }
+
+        if (unitPrice.value.trim() === "") {
+            row.querySelector('.unitPriceError').style.display = 'block';
+            isValid = false;
+        } else {
+            row.querySelector('.unitPriceError').style.display = 'none';
+        }
+    });
+
+    if (isValid) {
+        downloadPDF()
+    }
+}
+
+
+// Add event listeners to hide error messages on input
+const inputs = document.querySelectorAll('input[type="text"], input[type="number"], input[type="email"]');
+inputs.forEach(input => {
+    input.addEventListener('input', function () {
+        const errorSpan = document.getElementById(input.id + 'Error');
+        if (errorSpan) {
+            errorSpan.style.display = 'none'; // Hide error message on input
+        }
+    });
+});
 
 
 
